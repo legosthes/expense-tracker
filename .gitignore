@@ -5,6 +5,7 @@ build/
 dist/
 wheels/
 *.egg-info
+.env
 
 # Virtual environments
 .venv
@@ -13,3 +14,8 @@ db.sqlite3
 
 node_modules
 public/*
+
+.pg_db_pass
+.pg_service.conf
+
+uv.lock
