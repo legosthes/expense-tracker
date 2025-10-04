@@ -15,7 +15,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "css":"npx @tailwindcss/cli -i npm/styles/style.css -o /public/styles/style.css --watch"
+    "css":"npx @tailwindcss/cli -i src/styles/style.css -o public/styles/style.css --watch"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.14",

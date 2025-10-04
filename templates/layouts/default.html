@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {%load static%}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="public/styles/style.css">
+    <link rel="stylesheet" href="{%static 'styles/style.css'%}">
     <title>Budget</title>
 </head>
 <body>
     <header>
-        <nav>
+        <nav class="w-full text-sky-500">
             <a href="{%url 'accounts:accounts'%}">Accounts</a>
             <a href="">Login</a>
         </nav>
