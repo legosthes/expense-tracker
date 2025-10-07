@@ -8,7 +8,7 @@ def register(request):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("accounts:accounts")
+            return redirect("sessions:new")
         else:
             return render(request, "pages/register.html", {"form": form})
 

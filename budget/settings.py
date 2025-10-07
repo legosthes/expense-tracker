@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     "apps.accounts",
     "apps.records",
     "apps.users",
+    "apps.sessions.apps.SessionsConfig",
 ]
+
+LOGIN_URL = "/sessions/login"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

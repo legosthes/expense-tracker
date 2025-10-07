@@ -10,15 +10,18 @@
 <body>
     <header class="shadow-md w-full">
         <nav class=" text-sky-500 h-16 flex flex-row items-center gap-5 mx-5">
-            <a href="{%url 'accounts:accounts'%}">Accounts</a>
             {%if user.is_authenticated%}
+            <span>Hi {{user.username}}!</span>
+            <a href="{%url 'accounts:accounts'%}">Accounts</a>
+            <a href="{%url 'sessions:logout'%}">Logout</a>
             {%else%}
             <a href="{%url 'users:register'%}">Register</a>
+            <a href="{%url 'sessions:new'%}">Login</a>
             {%endif%}
         </nav>
     </header>
 
-    <div class="mx-4 w-full">
+    <div class="mx-5 w-full">
     {% block content %} {% endblock %}
     </div>
 </body>

@@ -1,0 +1,24 @@
+{%extends 'layouts/default.html' %}
+
+{%block content%}
+
+<h1 class="text-8xl text-sky-500">Login</h1>
+
+<div class="flex flex-row gap-5">
+    <form action="{%url 'sessions:create'%}" method="post">
+    {% csrf_token %}
+    {%for field in form%}
+    <div>{{field.label_tag}}</div>
+    <div class="border-5 border-sky-700">{{field}}</div>
+    {%endfor%}
+
+    <button class="text-blue-800">Submit</button>
+
+    </form>
+</div>
+
+
+
+
+
+{%endblock%}
