@@ -3,4 +3,4 @@ from . import views
 
 app_name = "accounts"
 
-urlpatterns = [path("accounts/", views.accounts, name="accounts")]
+urlpatterns = [path("accounts/<int:id>", views.accounts, name="accounts")]

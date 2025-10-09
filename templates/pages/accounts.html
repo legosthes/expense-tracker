@@ -4,4 +4,17 @@
 
 <h1 class="text-5xl text-primary font-bold">Accounts</h1>
 
+{%for account in accounts%}
+<div class="flex flex-row gap-5 mt-4">
+    <div class="border-3 border-secondary rounded-2xl p-2 flex flex-col items-center font-bold hover:bg-secondary hover:text-white transition-all duration-300">
+        <h2>{{account.name}}</h2>
+        <span>{{account.init_amount}}</span>
+    </div>
+    <div>
+        <button class="border-3 btn btn-outline btn-accent rounded-2xl h-full text-base transition-all duration-300">Create Account</button>
+    </div>
+</div>
+{%endfor%}
+
+
 {%endblock%}
