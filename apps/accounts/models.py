@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Account(models.Model):
     class Currency(models.TextChoices):
-        NTD = "NTD", "New Taiwan Dollar"
-        USD = "USD", "United States Dollar"
-        EUR = "EUR", "Euro"
-        GBP = "GBP", "Great British Pound"
+        NTD = "NT$", "New Taiwan Dollar"
+        USD = "US$", "United States Dollar"
+        EUR = "€", "Euro"
+        GBP = "£", "Great British Pound"
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(
