@@ -12,7 +12,7 @@ def create(request):
     user = authenticate(username=username, password=password)
     if user:
         login(request, user)
-        return redirect("accounts:accounts")
+        return redirect("accounts:accounts", user.id)
     else:
         return redirect("sessions:new")
 
