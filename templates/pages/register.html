@@ -4,15 +4,15 @@
 
 <h1 class="text-5xl text-primary font-bold">Register</h1>
 
-<div class="flex flex-col gap-5">
+<div class="flex flex-col gap-5 shadow-xl p-5 rounded-2xl w-1/2">
     <form action="{%url 'users:register'%}" method="post">
     {% csrf_token %}
     {%for field in form%}
-    <div>{{field.label_tag}}</div>
-    <div class="border-5 border-sky-700">{{field}}</div>
+    <div class="mt-3">{{field.label_tag}}</div>
+    <div class="input mt-3">{{field}}</div>
     {%endfor%}
 
-    <button>Submit</button>
+    <button class="btn btn-primary mt-3 rounded-3xl px-4 h-12 w-1/2 cursor-pointer transition-all duration-300 ease-in-out">Register</button>
 
     </form>
 </div>
