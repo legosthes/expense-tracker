@@ -13,5 +13,5 @@ def accounts(request, id):
 
 @login_required
 def new_account(request):
-    form = AccountForm
-    pass
+    form = AccountForm()
+    return render(request, "pages/new_account.html", {"form": form})

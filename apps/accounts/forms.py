@@ -1,5 +1,5 @@
 from apps.accounts.models import Account
-from django.forms import ModelForm, TextInput, Select, DecimalField
+from django.forms import ModelForm, TextInput, Select, NumberInput
 
 
 class AccountForm(ModelForm):
@@ -13,6 +13,6 @@ class AccountForm(ModelForm):
         }
         widgets = {
             "name": TextInput,
-            "init_amount": DecimalField,
-            "currency": Select,
+            "init_amount": NumberInput(attrs={"step": "0.01"}),
+            "currency": Select(),
         }

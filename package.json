@@ -15,13 +15,20 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "css": "npx @tailwindcss/cli -i src/styles/style.css -o public/styles/style.css --watch"
+    "css": "npx @tailwindcss/cli -i src/styles/style.css -o public/styles/style.css --watch",
+    "js": "rollup -c --watch",
+    "build": "concurrently 'npm run css' 'npm run js'"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.1.14",
+    "htmx.org": "^2.0.7",
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
-    "daisyui": "^5.1.29"
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "concurrently": "^9.2.1",
+    "daisyui": "^5.1.29",
+    "rollup": "^4.52.4"
   }
 }
