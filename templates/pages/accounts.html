@@ -2,7 +2,7 @@
 
 {%block content%}
 
-<h1 id="accounts-title" class="text-5xl text-primary font-bold">Accounts</h1>
+<h1 id="accounts-title" class="text-5xl text-primary font-bold mt-22">Accounts</h1>
 
 
 <div class="flex flex-row gap-5 mt-4 w-full">
@@ -14,8 +14,8 @@
     {%endfor%}
     <div>
         <button class="border-1 btn btn-outline btn-accent rounded-2xl h-full text-base transition-all duration-300"
-        hx-get="{% url 'accounts:new_account' %}" hx-target="#accounts-title"
-        hx-swap="afterbegin">Create Account</button>
+        hx-get="{% url 'accounts:new_account' %}" hx-target="#content"
+        hx-swap="beforebegin">Create Account</button>
     </div>
 </div>
 

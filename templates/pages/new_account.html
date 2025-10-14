@@ -1,14 +1,18 @@
-<h1 class="text-5xl text-primary font-bold">New Account</h1>
+<div class="bg-gray-600/50 w-full h-screen fixed grid place-content-center">
+    <div class="w-full">
+        <div class="flex flex-col gap-5 shadow-xl p-5 rounded-2xl bg-white">
+            <h1 class="text-3xl text-primary font-bold">New Account</h1>
+            <form action="#" method="post">
+            {% csrf_token %}
+            {%for field in form%}
+            <div class="mt-3">{{field.label_tag}}</div>
+            <div class="mt-3 input">{{field}}</div>
+            {%endfor%}
 
-<div class="flex flex-col gap-5 shadow-xl p-5 rounded-2xl w-1/2">
-    <form action="#" method="post">
-    {% csrf_token %}
-    {%for field in form%}
-    <div class="mt-3">{{field.label_tag}}</div>
-    <div class="mt-3 input">{{field}}</div>
-    {%endfor%}
+            <button class="btn btn-primary mt-3 rounded-3xl px-4 h-12 w-full cursor-pointer transition-all duration-300 ease-in-out">Add</button>
+            </form>
+        </div>
 
-    <button class="btn btn-primary mt-3 rounded-3xl px-4 h-12 w-1/2 cursor-pointer transition-all duration-300 ease-in-out">Add</button>
+    </div>
 
-    </form>
 </div>

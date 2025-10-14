@@ -9,7 +9,7 @@
     <title>Budget</title>
 </head>
 <body>
-    <header class="shadow-md w-full">
+    <header class="shadow-md w-full fixed top-0 left-0 bg-white">
         <nav class=" text-secondary h-16 flex flex-row items-center gap-5 mx-5">
             {%if user.is_authenticated%}
             <span>Hi {{user.username}}!</span>
@@ -22,7 +22,7 @@
         </nav>
     </header>
 
-    <div class="mx-5 mt-5">
+    <div id="content" class="mx-5 mt-16">
     {% block content %} {% endblock %}
     </div>
 </body>
