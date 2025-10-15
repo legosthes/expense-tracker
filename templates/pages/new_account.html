@@ -1,12 +1,12 @@
-<div class="bg-gray-600/50 w-full h-screen fixed grid place-content-center">
-    <div class="w-full">
+<div id="new_account" class="bg-gray-600/50 w-full h-screen fixed grid place-content-center" hx-on:click='document.getElementById("new_account").remove()'>
+    <div class="w-lg" hx-on:click="event.stopPropagation()">
         <div class="flex flex-col gap-5 shadow-xl p-5 rounded-2xl bg-white">
             <h1 class="text-3xl text-primary font-bold">New Account</h1>
             <form action="{%url 'accounts:accounts' user.id%}" method="post">
             {% csrf_token %}
             {%for field in form%}
             <div class="mt-3">{{field.label_tag}}</div>
-            <div class="mt-3 input">{{field}}</div>
+            <div class="mt-3 w-full input">{{field}}</div>
             {%endfor%}
 
             <button class="btn btn-primary mt-3 rounded-3xl px-4 h-12 w-full cursor-pointer transition-all duration-300 ease-in-out">Add</button>
