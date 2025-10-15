@@ -1,8 +1,15 @@
 {%extends 'layouts/default.html' %}
 
 {%block content%}
-<h1 id="accounts-title" class="text-5xl text-primary font-bold pt-5">Total Balance</h1>
-<div class="w-1/4 border-1 border-secondary rounded-2xl p-3 flex flex-col items-left hover:bg-secondary hover:text-white transition-all duration-300 group"></div>
+<div class="flex flex-row flex-wrap gap-5 mt-5">
+    {%for sum in sums%}
+    <div class="w-1/4 border-1 border-secondary rounded-2xl p-3 flex flex-col items-left hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
+        <h1>Total Balance</h1>
+        <span class="text-3xl font-bold mt-3">{{sum.currency}} {{sum.sum}}</span>
+    </div>
+    {%endfor%}
+</div>
+
 
 <h1 id="accounts-title" class="text-5xl text-primary font-bold pt-5">Accounts</h1>
 

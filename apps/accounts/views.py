@@ -5,12 +5,16 @@ from apps.accounts.forms import AccountForm
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.urls import reverse
+from django.db.models import Sum
 
 
 # Create your views here.
 @login_required
 def accounts(request, user_id):
     accounts = Account.objects.filter(user_id=user_id)
+    total_sums = (
+        accounts.values("currency").annotate(sum=Sum("init_amount")).order_by("-sum")
+    )
     if request.POST:
         form = AccountForm(request.POST)
         account = form.save(commit=False)
@@ -18,7 +22,9 @@ def accounts(request, user_id):
         account.save()
         return redirect("accounts:accounts", user_id)
     else:
-        return render(request, "pages/accounts.html", {"accounts": accounts})
+        return render(
+            request, "pages/accounts.html", {"accounts": accounts, "sums": total_sums}
+        )
 
 
 @login_required
