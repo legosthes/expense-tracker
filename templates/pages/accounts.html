@@ -10,9 +10,7 @@
     {%endfor%}
 </div>
 
-
 <h1 id="accounts-title" class="text-5xl text-primary font-bold pt-5">Accounts</h1>
-
 
 <div class="flex flex-row flex-wrap gap-5 mt-4 w-full">
     {%for account in accounts%}
@@ -36,7 +34,13 @@
 
 </div>
 
-<h1 class="text-5xl text-primary font-bold mt-5">Records</h1>
+<div>
+    <h1 class="text-5xl text-primary font-bold mt-5">Records</h1>
+    <button class="border-1 btn btn-outline btn-accent rounded-2xl h-full text-base transition-all duration-300 hover:text-white my-5"
+    hx-get="{% url 'records:new_record' user.id%}" hx-target="#content"
+    hx-swap="beforebegin">Create Record</button>
+</div>
+
 
 <div class="overflow-x-auto">
   <table class="table">
@@ -59,6 +63,5 @@
     </tbody>
   </table>
 </div>
-
 
 {%endblock%}

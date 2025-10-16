@@ -28,9 +28,7 @@ class Record(models.Model):
         null=False,
     )
     type = models.CharField(max_length=20, choices=RecordType)
-    category = models.CharField(
-        max_length=20, choices=RecordCategory, default=RecordCategory.Others
-    )
+    category = models.CharField(max_length=20, choices=RecordCategory, null=False)
     notes = models.TextField(max_length=200, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)

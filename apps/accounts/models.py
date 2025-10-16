@@ -19,3 +19,6 @@ class Account(models.Model):
     init_amount = models.DecimalField(max_digits=20, decimal_places=2, default=0)
     cur_amount = models.DecimalField(max_digits=20, decimal_places=2, default=0)
     currency = models.CharField(max_length=30, choices=Currency, default=Currency.NTD)
+
+    def __str__(self):
+        return self.name
