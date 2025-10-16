@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from apps.accounts.models import Account
+from apps.records.models import Record
 from apps.accounts.forms import AccountForm
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
@@ -12,6 +13,7 @@ from django.db.models import Sum
 @login_required
 def accounts(request, user_id):
     accounts = Account.objects.filter(user_id=request.user)
+    records = Record.objects.filter(user_id=request.user)
     total_sums = (
         accounts.values("currency").annotate(sum=Sum("init_amount")).order_by("-sum")
     )
@@ -23,7 +25,13 @@ def accounts(request, user_id):
         return redirect("accounts:accounts", user_id)
     else:
         return render(
-            request, "pages/accounts.html", {"accounts": accounts, "sums": total_sums}
+            request,
+            "pages/accounts.html",
+            {
+                "accounts": accounts,
+                "sums": total_sums,
+                "records": records,
+            },
         )
 
 
