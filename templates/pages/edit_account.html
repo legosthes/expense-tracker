@@ -6,13 +6,13 @@
                 {% csrf_token %}
                 {%for field in form%}
                 <div class="mt-3 font-bold text-xl">{{field.label_tag}}</div>
-                <div class="mt-3 w-full input">{{field}}</div>
+                <div class="mt-3 w-full">{{field}}</div>
                 {%endfor%}
 
                 <button class="btn btn-secondary mt-3 rounded-3xl px-4 h-12 w-full cursor-pointer transition-all duration-300 ease-in-out">Save</button>
             </form>
 
-            <form hx-post="{%url 'accounts:delete_account' user.id account.id%}" method="post" hx-confirm="Are you sure you want to delete {{account.name}}?" hx-refresh="true">
+            <form hx-post="{%url 'accounts:delete_account' user.id account.id%}" method="post" hx-confirm="Are you sure you want to delete {{account.name}}?">
                 {% csrf_token %}
                 <button class="btn btn-warning mt-3 rounded-3xl px-4 h-12 w-full cursor-pointer transition-all duration-300 ease-in-out">Delete</button>
             </form>

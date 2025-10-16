@@ -12,7 +12,7 @@ class AccountForm(ModelForm):
             "currency": "Currency",
         }
         widgets = {
-            "name": TextInput,
-            "init_amount": NumberInput(attrs={"step": "0.01"}),
-            "currency": Select(),
+            "name": TextInput(attrs={"class": "input"}),
+            "init_amount": NumberInput(attrs={"step": "0.01", "class": "input"}),
+            "currency": Select(attrs={"class": "select"}),
         }

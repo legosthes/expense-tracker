@@ -2116,6 +2116,11 @@
     --btn-color: var(--color-warning);
     --btn-fg: var(--color-warning-content);
   }
+  .select-neutral {
+    &, &:focus, &:focus-within {
+      --input-color: var(--color-neutral);
+    }
+  }
   .group-hover\:visible {
     &:is(:where(.group):hover *) {
       @media (hover: hover) {

@@ -11,7 +11,7 @@ from django.db.models import Sum
 # Create your views here.
 @login_required
 def accounts(request, user_id):
-    accounts = Account.objects.filter(user_id=user_id)
+    accounts = Account.objects.filter(user_id=request.user)
     total_sums = (
         accounts.values("currency").annotate(sum=Sum("init_amount")).order_by("-sum")
     )
