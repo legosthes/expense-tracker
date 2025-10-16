@@ -1582,6 +1582,9 @@
       cursor: not-allowed;
     }
   }
+  .z-50 {
+    z-index: 50;
+  }
   .z-99 {
     z-index: 99;
   }
