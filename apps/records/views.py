@@ -8,5 +8,4 @@ from apps.records.forms import RecordForm
 def new_record(request, user_id):
     form = RecordForm()
     form.fields["account"].queryset = Account.objects.filter(user_id=request.user)
-
     return render(request, "pages/new_record.html", {"form": form})

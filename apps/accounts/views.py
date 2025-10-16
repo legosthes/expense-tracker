@@ -11,7 +11,7 @@ from django.db.models import Sum
 
 # Create your views here.
 @login_required
-def accounts(request, user_id):
+def accounts(request):
     accounts = Account.objects.filter(user_id=request.user)
     records = Record.objects.filter(user_id=request.user)
     total_sums = (
@@ -20,9 +20,9 @@ def accounts(request, user_id):
     if request.POST:
         form = AccountForm(request.POST)
         account = form.save(commit=False)
-        account.user_id = user_id
+        account.user = request.user
         account.save()
-        return redirect("accounts:accounts", user_id)
+        return redirect("accounts:accounts")
     else:
         return render(
             request,
@@ -56,7 +56,7 @@ def update_account(request, user_id, account_id):
     account = Account.objects.get(pk=account_id, user=user_id)
     form = AccountForm(request.POST, instance=account)
     form.save()
-    return redirect("accounts:accounts", user_id)
+    return redirect("accounts:accounts")
 
 
 @login_required
@@ -65,5 +65,5 @@ def delete_account(request, user_id, account_id):
     account = Account.objects.get(pk=account_id, user=user_id)
     account.delete()
     response = HttpResponse(status=200)
-    response["HX-Redirect"] = reverse("accounts:accounts", args=[user_id])
+    response["HX-Redirect"] = reverse("accounts:accounts")
     return response
