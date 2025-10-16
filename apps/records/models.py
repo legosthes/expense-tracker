@@ -10,13 +10,20 @@ class Record(models.Model):
         Income = "Income", "Income"
         Transfer = "Transfer", "Transfer"
 
-    class RecordCategory(models.TextChoices):
+    class ExpenseCategory(models.TextChoices):
         Restaurants = "Restaurants", "Restaurants"
         Transportation = "Transportation", "Transportation"
         Groceries = "Groceries", "Groceries"
         Shopping = "Shopping", "Shopping"
         Housing = "Housing", "Housing"
         Life_Entertainment = "Life & Entertainment", "Life & Entertainment"
+        Others = "Others", "Others"
+
+    class IncomeCategory(models.TextChoices):
+        Salary = "Salary", "Salary"
+        Dividends = "Dividends", "Dividends"
+        Interests = "Interests", "Interests"
+        Gifts = "Gifts", "Gifts"
         Others = "Others", "Others"
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -28,7 +35,7 @@ class Record(models.Model):
         null=False,
     )
     type = models.CharField(max_length=20, choices=RecordType)
-    category = models.CharField(max_length=20, choices=RecordCategory, null=False)
+    category = models.CharField(max_length=20, choices=ExpenseCategory, null=False)
     notes = models.TextField(max_length=200, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
