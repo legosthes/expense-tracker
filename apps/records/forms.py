@@ -9,6 +9,13 @@ class RecordForm(ModelForm):
         widget=Select(attrs={"class": "select"}),
     )
 
+    def __init__(self, *args, user=None, **kwargs):
+        # set up the form first, including the fields
+        super().__init__(*args, **kwargs)
+
+        if user:
+            self.fields["account"].queryset = Account.objects.filter(user=user)
+
     class Meta:
         model = Record
         fields = ["account", "amount", "type", "category", "notes"]
