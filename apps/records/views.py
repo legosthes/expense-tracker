@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from apps.accounts.models import Account
 from apps.records.forms import RecordForm
 
 
