@@ -2012,6 +2012,9 @@
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
   }
+  .px-5 {
+    padding-inline: calc(var(--spacing) * 5);
+  }
   .pt-5 {
     padding-top: calc(var(--spacing) * 5);
   }
@@ -2020,6 +2023,9 @@
   }
   .pt-22 {
     padding-top: calc(var(--spacing) * 22);
+  }
+  .pr-5 {
+    padding-right: calc(var(--spacing) * 5);
   }
   .text-3xl {
     font-size: var(--text-3xl);

@@ -14,6 +14,7 @@ from django.db.models import Sum
 @login_required
 def accounts(request):
     accounts = Account.objects.filter(user_id=request.user).order_by("created_at")
+    records = Record.objects.filter(user_id=request.user).order_by("-created_at")
     total_sums = (
         accounts.values("currency").annotate(sum=Sum("init_amount")).order_by("-sum")
     )
@@ -30,9 +31,15 @@ def accounts(request):
                 record = form.save(commit=False)
                 record.user = request.user
                 record.save()
+
+                account = record.account
+                expense_sum = Record.objects.filter(
+                    user=request.user, account=account.id, type="Expense"
+                ).aggregate(Sum("amount"))
+                account.cur_amount = account.init_amount - expense_sum["amount__sum"]
+                account.save()
                 return redirect("accounts:accounts")
     else:
-        records = Record.objects.filter(user_id=request.user)
         return render(
             request,
             "pages/accounts.html",

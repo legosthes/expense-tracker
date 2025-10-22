@@ -23,3 +23,11 @@ class Account(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def total_expense(self):
+        pass
+
+    @property
+    def total_income(self):
+        pass

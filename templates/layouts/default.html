@@ -10,14 +10,19 @@
 </head>
 <body>
     <header class="shadow-md w-full fixed top-0 left-0 bg-white">
-        <nav class=" text-secondary h-16 flex flex-row items-center gap-5 mx-5">
-            {%if user.is_authenticated%}
-            <span>Hi {{user.username}}!</span>
-            <a href="{%url 'accounts:accounts'%}">Accounts</a>
-            <a href="{%url 'sessions:logout'%}">Logout</a>
-            {%else%}
-            <a href="{%url 'users:register'%}">Register</a>
-            <a href="{%url 'sessions:new'%}">Login</a>
+        <nav class=" text-secondary h-16 flex flex-row items-center justify-between gap-5 mx-5">
+            <div>
+                {%if user.is_authenticated%}
+                <span class="pr-5">Hi {{user.username}}!</span>
+                <a href="{%url 'accounts:accounts'%}">Accounts</a>
+            </div>
+
+            <div>
+                <a href="{%url 'sessions:logout'%}">Logout</a>
+                {%else%}
+                <a href="{%url 'users:register'%}">Register</a>
+                <a href="{%url 'sessions:new'%}">Login</a>
+            </div>
             {%endif%}
         </nav>
     </header>
