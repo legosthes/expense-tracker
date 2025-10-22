@@ -33,10 +33,12 @@ def accounts(request):
                 record.save()
 
                 account = record.account
-                expense_sum = Record.objects.filter(
-                    user=request.user, account=account.id, type="Expense"
-                ).aggregate(Sum("amount"))
-                account.cur_amount = account.init_amount - expense_sum["amount__sum"]
+                # expense_sum = Record.objects.filter(
+                #     user=request.user, account=account.id, type="Expense"
+                # ).aggregate(Sum("amount"))
+                account.cur_amount = (
+                    account.init_amount - account.total_expense + account.total_income
+                )
                 account.save()
                 return redirect("accounts:accounts")
     else:

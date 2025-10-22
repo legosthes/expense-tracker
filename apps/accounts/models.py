@@ -26,8 +26,20 @@ class Account(models.Model):
 
     @property
     def total_expense(self):
-        pass
+        from apps.records.models import Record
+        from django.db.models import Sum
+
+        record_sum = Record.objects.filter(
+            user=self.user, type="Expense", account=self
+        ).aggregate(Sum("amount"))
+        return record_sum["amount__sum"] or 0
 
     @property
     def total_income(self):
-        pass
+        from apps.records.models import Record
+        from django.db.models import Sum
+
+        record_sum = Record.objects.filter(
+            user=self.user, type="Income", account=self
+        ).aggregate(Sum("amount"))
+        return record_sum["amount__sum"] or 0
