@@ -7,17 +7,17 @@ urlpatterns = [
     path("accounts/", views.accounts, name="accounts"),
     path("accounts/new/", views.new_account, name="new_account"),
     path(
-        "accounts/<int:user_id>/account/<int:account_id>",
+        "accounts/account/<int:account_id>",
         views.edit_account,
         name="edit_account",
     ),
     path(
-        "accounts/<int:user_id>/account/<int:account_id>/update",
+        "accounts/account/<int:account_id>/update",
         views.update_account,
         name="update_account",
     ),
     path(
-        "accounts/<int:user_id>/account/<int:account_id>/delete",
+        "accounts/account/<int:account_id>/delete",
         views.delete_account,
         name="delete_account",
     ),

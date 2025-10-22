@@ -4,6 +4,6 @@ from apps.records.forms import RecordForm
 
 
 @login_required
-def new_record(request, user_id):
+def new_record(request):
     form = RecordForm(user=request.user)
     return render(request, "pages/new_record.html", {"form": form})

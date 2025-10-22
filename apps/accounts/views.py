@@ -54,8 +54,8 @@ def new_account(request):
 
 
 @login_required
-def edit_account(request, user_id, account_id):
-    account = Account.objects.get(pk=account_id, user=user_id)
+def edit_account(request, account_id):
+    account = Account.objects.get(pk=account_id, user=request.user)
     form = AccountForm(instance=account)
     return render(
         request, "pages/edit_account.html", {"form": form, "account": account}
@@ -64,8 +64,8 @@ def edit_account(request, user_id, account_id):
 
 @login_required
 @require_POST
-def update_account(request, user_id, account_id):
-    account = Account.objects.get(pk=account_id, user=user_id)
+def update_account(request, account_id):
+    account = Account.objects.get(pk=account_id, user=request.user)
     form = AccountForm(request.POST, instance=account)
     form.save()
     return redirect("accounts:accounts")
@@ -73,8 +73,8 @@ def update_account(request, user_id, account_id):
 
 @login_required
 @require_POST
-def delete_account(request, user_id, account_id):
-    account = Account.objects.get(pk=account_id, user=user_id)
+def delete_account(request, account_id):
+    account = Account.objects.get(pk=account_id, user=request.user)
     account.delete()
     response = HttpResponse(status=200)
     response["HX-Redirect"] = reverse("accounts:accounts")
