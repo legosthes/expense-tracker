@@ -2003,6 +2003,12 @@
   .bg-white {
     background-color: var(--color-white);
   }
+  .fill-accent {
+    fill: var(--color-accent);
+  }
+  .fill-white {
+    fill: var(--color-white);
+  }
   .p-3 {
     padding: calc(var(--spacing) * 3);
   }
@@ -2103,6 +2109,10 @@
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
+  .duration-200 {
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
   .duration-300 {
     --tw-duration: 300ms;
     transition-duration: 300ms;
@@ -2192,6 +2202,13 @@
       }
     }
   }
+  .hover\:bg-primary {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary);
+      }
+    }
+  }
   .hover\:bg-secondary {
     &:hover {
       @media (hover: hover) {
@@ -2206,10 +2223,24 @@
       }
     }
   }
+  .hover\:fill-accent {
+    &:hover {
+      @media (hover: hover) {
+        fill: var(--color-accent);
+      }
+    }
+  }
   .hover\:fill-black {
     &:hover {
       @media (hover: hover) {
         fill: var(--color-black);
+      }
+    }
+  }
+  .hover\:fill-white {
+    &:hover {
+      @media (hover: hover) {
+        fill: var(--color-white);
       }
     }
   }
