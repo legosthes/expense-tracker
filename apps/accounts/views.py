@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from apps.accounts.models import Account
 from apps.records.models import Record
 from apps.accounts.forms import AccountForm
+from apps.records.forms import RecordForm
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.urls import reverse
@@ -13,17 +14,25 @@ from django.db.models import Sum
 @login_required
 def accounts(request):
     accounts = Account.objects.filter(user_id=request.user).order_by("created_at")
-    records = Record.objects.filter(user_id=request.user)
     total_sums = (
         accounts.values("currency").annotate(sum=Sum("init_amount")).order_by("-sum")
     )
     if request.POST:
-        form = AccountForm(request.POST)
-        account = form.save(commit=False)
-        account.user = request.user
-        account.save()
-        return redirect("accounts:accounts")
+        if request.POST["_method"] == "account":
+            form = AccountForm(request.POST)
+            account = form.save(commit=False)
+            account.user = request.user
+            account.save()
+            return redirect("accounts:accounts")
+        if request.POST["_method"] == "record":
+            form = RecordForm(request.POST, user=request.user)
+            if form.is_valid():
+                record = form.save(commit=False)
+                record.user = request.user
+                record.save()
+                return redirect("accounts:accounts")
     else:
+        records = Record.objects.filter(user_id=request.user)
         return render(
             request,
             "pages/accounts.html",

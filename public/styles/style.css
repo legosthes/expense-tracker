@@ -1706,6 +1706,9 @@
   .mt-64 {
     margin-top: calc(var(--spacing) * 64);
   }
+  .mb-5 {
+    margin-bottom: calc(var(--spacing) * 5);
+  }
   .status {
     display: inline-block;
     aspect-ratio: 1 / 1;
@@ -1801,6 +1804,9 @@
   }
   .grid {
     display: grid;
+  }
+  .hidden {
+    display: none;
   }
   .inline {
     display: inline;
