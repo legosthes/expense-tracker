@@ -43,3 +43,8 @@ class Account(models.Model):
             user=self.user, type="Income", account=self
         ).aggregate(Sum("amount"))
         return record_sum["amount__sum"] or 0
+
+    def cal_cur_amount(self):
+        cal_amount = self.init_amount - self.total_expense + self.total_income
+        self.cur_amount = cal_amount
+        self.save()
