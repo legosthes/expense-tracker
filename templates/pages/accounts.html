@@ -57,7 +57,11 @@
         {%for record in records%}
       <tr class="hover:bg-primary hover:text-white transition-all duration-200 group">
         <th>{{record.created_at}}</th>
-        <td>{{record.account.currency}} {{record.amount}}</td>
+        {%if record.type == "Expense"%}
+        <td class="text-error"> - {{record.account.currency}} {{record.amount}}</td>
+        {%elif record.type == "Income"%}
+        <td class="text-success"> + {{record.account.currency}} {{record.amount}}</td>
+        {%endif%}
         <td>{{record.category}}</td>
         <td>{{record.account}}</td>
         <td>
