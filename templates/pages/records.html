@@ -5,10 +5,17 @@
             <select class="select w-1/8 rounded-2xl">
                 <option disabled selected>Filter by category</option>
                 {%for category in categories%}
+                {%if selected%}
+                <option
+                hx-get="{%url 'records:account_category_record' selected category%}"
+                hx-target="#records"
+                hx-swap="innerHTML">{{category}}</option>
+                {%else%}
                 <option
                 hx-get="{%url 'records:category_record' category%}"
                 hx-target="#records"
                 hx-swap="innerHTML">{{category}}</option>
+                {%endif%}
                 {%endfor%}
             </select>
             <button class="border-1 btn btn-outline btn-accent rounded-2xl h-38px text-base transition-all duration-300 hover:text-white my-5"
