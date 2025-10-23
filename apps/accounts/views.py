@@ -21,6 +21,15 @@ def accounts(request):
     total_sums = (
         accounts.values("currency").annotate(sum=Sum("cur_amount")).order_by("-sum")
     )
+
+    sum_items = []
+
+    for sum in total_sums:
+        currency = sum["currency"]
+        currency_label = Account.Currency(currency).label
+        sum_item = {**sum, "label": currency_label}
+        sum_items.append(sum_item)
+
     if request.POST:
         if request.POST["_method"] == "account":
             form = AccountForm(request.POST)
@@ -41,7 +50,7 @@ def accounts(request):
             "pages/accounts.html",
             {
                 "accounts": accounts,
-                "sums": total_sums,
+                "sums": sum_items,
                 "records": records,
             },
         )
