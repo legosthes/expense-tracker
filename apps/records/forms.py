@@ -30,5 +30,5 @@ class RecordForm(ModelForm):
             "amount": NumberInput(attrs={"step": "0.01", "class": "input w-full"}),
             "type": Select(attrs={"class": "select w-full"}),
             "category": Select(attrs={"class": "select w-full"}),
-            "notes": Textarea(attrs={"rows": 5, "class": "textarea w-full"}),
+            "notes": Textarea(attrs={"rows": 3, "class": "textarea w-full"}),
         }
