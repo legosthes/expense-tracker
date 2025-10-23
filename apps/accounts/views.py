@@ -13,6 +13,7 @@ from django.db.models import Sum
 # Create your views here.
 @login_required
 def accounts(request):
+    categories = Record.ExpenseCategory
     accounts = Account.objects.filter(user_id=request.user).order_by("created_at")
     for account in accounts:
         account.cal_cur_amount()
@@ -52,6 +53,7 @@ def accounts(request):
                 "accounts": accounts,
                 "sums": sum_items,
                 "records": records,
+                "categories": categories,
             },
         )
 

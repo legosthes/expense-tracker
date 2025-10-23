@@ -12,6 +12,18 @@ def account_record(request, account_id):
     return render(request, "pages/records.html", {"records": records})
 
 
+def category_record(request, category):
+    records = Record.objects.filter(user=request.user, category=category)
+    return render(request, "pages/records.html", {"records": records})
+
+
+def account_category_record(request, account_id, category):
+    records = Record.objects.filter(
+        user=request.user, account=account_id, category=category
+    )
+    return render(request, "pages/records.html", {"records": records})
+
+
 @login_required
 def new_record(request):
     form = RecordForm(user=request.user)

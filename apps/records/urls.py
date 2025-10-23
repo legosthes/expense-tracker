@@ -5,7 +5,19 @@ app_name = "records"
 
 urlpatterns = [
     path(
-        "accounts/records/<int:account_id>", views.account_record, name="account_record"
+        "accounts/records/account/<int:account_id>",
+        views.account_record,
+        name="account_record",
+    ),
+    path(
+        "accounts/records/category/<str:category>",
+        views.category_record,
+        name="category_record",
+    ),
+    path(
+        "accounts/records/account/<int:account_id>/category/<str:category>",
+        views.account_category_record,
+        name="account_category_record",
     ),
     path("accounts/records/new", views.new_record, name="new_record"),
     path(
