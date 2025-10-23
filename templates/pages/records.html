@@ -1,18 +1,54 @@
-{%for record in records%}
-    <tr class="hover:bg-primary hover:text-white transition-all duration-200 group">
-        <th>{{record.created_at}}</th>
-        {%if record.type == "Expense"%}
-        <td class="text-error font-bold"> - {{record.account.currency}} {{record.amount}}</td>
-        {%elif record.type == "Income"%}
-        <td class="text-success font-bold"> + {{record.account.currency}} {{record.amount}}</td>
-        {%endif%}
-        <td>{{record.category}}</td>
-        <td>{{record.account}}</td>
-        <td>
-            <button hx-get="{%url 'records:edit_record' record.id%}" hx-target="#content"
-            hx-swap="beforebegin" class="text-white invisible group-hover:visible">
-                <svg class="w-5 rounded-md fill-white hover:bg-white/30 hover:fill-white cursor-pointer transition-all duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M320 208C289.1 208 264 182.9 264 152C264 121.1 289.1 96 320 96C350.9 96 376 121.1 376 152C376 182.9 350.9 208 320 208zM320 432C350.9 432 376 457.1 376 488C376 518.9 350.9 544 320 544C289.1 544 264 518.9 264 488C264 457.1 289.1 432 320 432zM376 320C376 350.9 350.9 376 320 376C289.1 376 264 350.9 264 320C264 289.1 289.1 264 320 264C350.9 264 376 289.1 376 320z"/></svg>
-            </button>
-        </td>
-    </tr>
-{%endfor%}
+<div id="records">
+    <div>
+        <h1 class="text-5xl text-primary font-bold mt-5">Records</h1>
+        <div class="flex flex-row gap-5 items-center">
+            <select class="select w-1/8 rounded-2xl">
+                <option disabled selected>Filter by category</option>
+                {%for category in categories%}
+                <option
+                hx-get="{%url 'records:category_record' category%}"
+                hx-target="#records"
+                hx-swap="innerHTML">{{category}}</option>
+                {%endfor%}
+            </select>
+            <button class="border-1 btn btn-outline btn-accent rounded-2xl h-38px text-base transition-all duration-300 hover:text-white my-5"
+            hx-get="{% url 'records:new_record'%}" hx-target="#content"
+            hx-swap="beforebegin">Create Record</button>
+        </div>
+    </div>
+
+    <div class="overflow-x-auto mb-5">
+    <table class="table">
+        <!-- head -->
+        <thead>
+        <tr>
+            <th class="w-1/4">Date</th>
+            <th class="w-1/4">Amount</th>
+            <th class="w-1/4">Category</th>
+            <th class="w-1/4">Account</th>
+        </tr>
+        </thead>
+        <tbody>
+            {%for record in records%}
+                <tr class="hover:bg-primary hover:text-white transition-all duration-200 group">
+                    <th>{{record.created_at}}</th>
+                    {%if record.type == "Expense"%}
+                    <td class="text-error font-bold"> - {{record.account.currency}} {{record.amount}}</td>
+                    {%elif record.type == "Income"%}
+                    <td class="text-success font-bold"> + {{record.account.currency}} {{record.amount}}</td>
+                    {%endif%}
+                    <td>{{record.category}}</td>
+                    <td>{{record.account}}</td>
+                    <td>
+                        <button hx-get="{%url 'records:edit_record' record.id%}" hx-target="#content"
+                        hx-swap="beforebegin" class="text-white invisible group-hover:visible">
+                            <svg class="w-5 rounded-md fill-white hover:bg-white/30 hover:fill-white cursor-pointer transition-all duration-200" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path d="M320 208C289.1 208 264 182.9 264 152C264 121.1 289.1 96 320 96C350.9 96 376 121.1 376 152C376 182.9 350.9 208 320 208zM320 432C350.9 432 376 457.1 376 488C376 518.9 350.9 544 320 544C289.1 544 264 518.9 264 488C264 457.1 289.1 432 320 432zM376 320C376 350.9 350.9 376 320 376C289.1 376 264 350.9 264 320C264 289.1 289.1 264 320 264C350.9 264 376 289.1 376 320z"/></svg>
+                        </button>
+                    </td>
+                </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    </div>
+
+</div>

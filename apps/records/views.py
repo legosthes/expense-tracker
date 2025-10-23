@@ -9,7 +9,9 @@ from django.views.decorators.http import require_POST
 
 def account_record(request, account_id):
     records = Record.objects.filter(user=request.user, account=account_id)
-    return render(request, "pages/records.html", {"records": records})
+    return render(
+        request, "pages/records.html", {"records": records, "selected": account_id}
+    )
 
 
 def category_record(request, category):
