@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 
+@login_required
 def account_record(request, account_id):
     categories = Record.ExpenseCategory
     records = Record.objects.filter(user=request.user, account=account_id)
@@ -17,6 +18,7 @@ def account_record(request, account_id):
     )
 
 
+@login_required
 def category_record(request, category):
     categories = Record.ExpenseCategory
     records = Record.objects.filter(user=request.user, category=category)
@@ -25,13 +27,20 @@ def category_record(request, category):
     )
 
 
+@login_required
 def account_category_record(request, account_id, category):
     categories = Record.ExpenseCategory
     records = Record.objects.filter(
         user=request.user, account=account_id, category=category
     )
     return render(
-        request, "pages/records.html", {"records": records, "categories": categories}
+        request,
+        "pages/records.html",
+        {
+            "records": records,
+            "categories": categories,
+            "selected": account_id,
+        },
     )
 
 

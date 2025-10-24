@@ -8,7 +8,6 @@ class Record(models.Model):
     class RecordType(models.TextChoices):
         Expense = "Expense", "Expense"
         Income = "Income", "Income"
-        Transfer = "Transfer", "Transfer"
 
     class ExpenseCategory(models.TextChoices):
         Restaurants = "Restaurants", "Restaurants"
