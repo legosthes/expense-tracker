@@ -2,9 +2,9 @@
 
 {%block content%}
 
-<h1 class="text-5xl text-primary font-bold">Register</h1>
+<h1 class="text-5xl text-primary font-bold  mt-5 px-5">Register</h1>
 
-<div class="flex flex-col gap-5 shadow-xl p-5 rounded-2xl w-1/2">
+<div class="flex flex-col gap-5 shadow-xl px-5 rounded-2xl w-1/2">
     <form action="{%url 'users:register'%}" method="post">
     {% csrf_token %}
     {%for field in form%}
@@ -12,7 +12,7 @@
     <div class="input mt-3">{{field}}</div>
     {%endfor%}
 
-    <button class="btn btn-primary mt-3 rounded-3xl px-4 h-12 w-1/2 cursor-pointer transition-all duration-300 ease-in-out">Register</button>
+    <button class="btn btn-primary my-3 rounded-3xl px-4 h-12 w-1/2 cursor-pointer transition-all duration-300 ease-in-out">Register</button>
 
     </form>
 </div>

@@ -2,9 +2,9 @@
 
 {%block content%}
 
-<h1 class="text-5xl text-primary font-bold">Login</h1>
+<h1 class="text-5xl text-primary font-bold mt-5 px-5">Login</h1>
 
-<div class="flex flex-col gap-5 shadow-xl p-5 rounded-2xl w-1/2">
+<div class="flex flex-col gap-5 shadow-xl px-5 rounded-2xl w-1/2">
     <form action="{%url 'sessions:create'%}" method="post">
     {% csrf_token %}
     {%for field in form%}
@@ -12,7 +12,7 @@
     <div class="mt-3 input">{{field}}</div>
     {%endfor%}
 
-    <button class="btn btn-primary mt-3 rounded-3xl px-4 h-12 w-1/2 cursor-pointer transition-all duration-300 ease-in-out">Submit</button>
+    <button class="btn btn-primary mt-3 rounded-3xl px-4 mb-5 h-12 w-1/2 cursor-pointer transition-all duration-300 ease-in-out">Submit</button>
 
     </form>
 </div>
