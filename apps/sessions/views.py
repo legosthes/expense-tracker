@@ -18,7 +18,7 @@ def create(request):
 
 
 def new(request):
-    form = AuthenticationForm
+    form = AuthenticationForm()
     return render(request, "pages/login.html", {"form": form})
 
 
