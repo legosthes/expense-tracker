@@ -44,16 +44,26 @@ class UserForm(UserCreationForm):
         return email
 
     def clean_password1(self):
-        password = self.cleaned_data.get("password1")
+        password1 = self.cleaned_data.get("password1")
         pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-        is_match = re.fullmatch(pattern, password)
+        is_match = re.fullmatch(pattern, password1)
 
         if not is_match:
             raise ValidationError(
                 "Password must be minimum of 8 characters and include at least one uppercase letter, one lowercase letter, one number and one special character"
             )
 
-        return password
+        return password1
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+
+        if password1 and password2:
+            if password1 != password2:
+                raise ValidationError("Passwords don't match")
+
+        return password2
 
     class Meta:
         model = User
