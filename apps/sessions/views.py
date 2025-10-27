@@ -2,12 +2,19 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_POST
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 
 
 # Create your views here.
 @require_POST
 def create(request):
     form = AuthenticationForm(request, data=request.POST)
+
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+
+    if not User.objects.filter(username=username).exists():
+        form.add_error("username", f"The username: {username} is not registered.")
 
     if form.is_valid():
         user = form.get_user()
