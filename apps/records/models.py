@@ -16,6 +16,7 @@ class Record(models.Model):
         Shopping = "Shopping", "Shopping"
         Housing = "Housing", "Housing"
         Life_Entertainment = "Life & Entertainment", "Life & Entertainment"
+        Income = "Income", "Income"
         Others = "Others", "Others"
 
     class IncomeCategory(models.TextChoices):
