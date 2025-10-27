@@ -3,7 +3,11 @@
 {%block content%}
 <div class="flex flex-row flex-wrap gap-5 mt-5">
     {%for sum in sums%}
-    <div class="w-1/4 border-1 border-secondary rounded-2xl p-3 flex flex-col items-left hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
+    <div class="sum w-1/4 border-1 border-accent rounded-2xl p-3 flex flex-col items-left hover:bg-accent hover:border-accent hover:text-white transition-all duration-300 cursor-pointer"
+    hx-get="{%url 'records:sum_record' sum.label%}"
+    hx-target="#records"
+    hx-swap="innerHTML"
+    hx-on:click="document.querySelectorAll('.account').forEach(account=>account.classList.remove('selected_account'));document.querySelectorAll('.sum').forEach(sum=>sum.classList.remove('selected_sum'));this.classList.add('selected_sum')">
         <h1><span class="font-bold">Total Balance</span> ({{sum.label}})</h1>
         <span class="text-3xl font-bold mt-3">{{sum.currency}} {{sum.sum}}</span>
     </div>
@@ -18,7 +22,7 @@
     hx-get="{%url 'records:account_record' account.id%}"
     hx-target="#records"
     hx-swap="innerHTML"
-    hx-on:click="document.querySelectorAll('.account').forEach(account=>account.classList.remove('selected_account'));this.classList.add('selected_account')">
+    hx-on:click="document.querySelectorAll('.sum').forEach(sum=>sum.classList.remove('selected_sum'));document.querySelectorAll('.account').forEach(account=>account.classList.remove('selected_account'));this.classList.add('selected_account')">
         <div class="flex flex-row justify-between">
             <h2>{{account.name}}</h2>
             <button hx-get="{%url 'accounts:edit_account' account.id%}" hx-target="#content"

@@ -11,3 +11,7 @@
 .selected_account {
   @apply bg-secondary text-white;
 }
+
+.selected_sum {
+  @apply bg-accent text-white;
+}

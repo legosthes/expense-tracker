@@ -19,6 +19,11 @@ urlpatterns = [
         views.account_category_record,
         name="account_category_record",
     ),
+    path(
+        "accounts/records/sum/<str:currency>",
+        views.sum_record,
+        name="sum_record",
+    ),
     path("accounts/records/new", views.new_record, name="new_record"),
     path(
         "accounts/records/<int:record_id>/edit", views.edit_record, name="edit_record"

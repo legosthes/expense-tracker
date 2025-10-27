@@ -1423,6 +1423,9 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-accent {
+    border-color: var(--color-accent);
+  }
   .border-secondary {
     border-color: var(--color-secondary);
   }
@@ -1449,9 +1452,6 @@
   }
   .px-5 {
     padding-inline: calc(var(--spacing) * 5);
-  }
-  .py-5 {
-    padding-block: calc(var(--spacing) * 5);
   }
   .pt-5 {
     padding-top: calc(var(--spacing) * 5);
@@ -1637,6 +1637,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
 .selected_account {
   background-color: var(--color-secondary);
+  color: var(--color-white);
+}
+.selected_sum {
+  background-color: var(--color-accent);
   color: var(--color-white);
 }
 @layer base {

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from apps.records.forms import RecordForm
+from apps.accounts.models import Account
 from .models import Record
 from django.http import HttpResponse
 from django.urls import reverse
@@ -10,7 +11,9 @@ from django.views.decorators.http import require_POST
 @login_required
 def account_record(request, account_id):
     categories = Record.ExpenseCategory
-    records = Record.objects.filter(user=request.user, account=account_id)
+    records = Record.objects.filter(user=request.user, account=account_id).order_by(
+        "-created_at"
+    )
     return render(
         request,
         "pages/records.html",
@@ -21,7 +24,9 @@ def account_record(request, account_id):
 @login_required
 def category_record(request, category):
     categories = Record.ExpenseCategory
-    records = Record.objects.filter(user=request.user, category=category)
+    records = Record.objects.filter(user=request.user, category=category).order_by(
+        "-created_at"
+    )
     return render(
         request, "pages/records.html", {"records": records, "categories": categories}
     )
@@ -32,7 +37,7 @@ def account_category_record(request, account_id, category):
     categories = Record.ExpenseCategory
     records = Record.objects.filter(
         user=request.user, account=account_id, category=category
-    )
+    ).order_by("-created_at")
     return render(
         request,
         "pages/records.html",
@@ -41,6 +46,23 @@ def account_category_record(request, account_id, category):
             "categories": categories,
             "selected": account_id,
         },
+    )
+
+
+@login_required
+def sum_record(request, currency):
+    categories = Record.ExpenseCategory
+    currency_value = getattr(Account.Currency, currency)
+    print(currency_value)
+    accounts = Account.objects.filter(currency=currency_value)
+    for account in accounts:
+        records = Record.objects.filter(user=request.user, account=account).order_by(
+            "-created_at"
+        )
+    return render(
+        request,
+        "pages/records.html",
+        {"records": records, "categories": categories},
     )
 
 
