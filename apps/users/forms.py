@@ -25,19 +25,9 @@ class UserForm(UserCreationForm):
     def clean_email(self):
         email = self.cleaned_data.get("email")
 
-        # all_user_emails = User.objects.values("email")
-        # emails = []
-
-        # for user_email in all_user_emails:
-        #     emails.append(user_email["email"])
-
-        # if email in emails:
-        #     raise ValidationError("Email already registered!")
-
         if not email:
             raise ValidationError("Email is required!")
 
-        # better way:
         if User.objects.filter(email=email).exists():
             raise ValidationError("Email already registered!")
 
