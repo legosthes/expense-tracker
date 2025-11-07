@@ -4,6 +4,8 @@ A personal expense tracking web application built with Django. Track your income
 
 🔗 **Live Demo:** [https://budget-12pl.onrender.com](https://budget-12pl.onrender.com)
 
+<img width="1127" height="755" alt="Screenshot 2025-11-07 at 2 43 40 PM" src="https://github.com/user-attachments/assets/4d984808-0470-40dd-9041-77bf1d937690" />
+
 ## Features
 
 - ✅ **User Authentication** - Secure registration and login
