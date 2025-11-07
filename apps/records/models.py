@@ -39,3 +39,9 @@ class Record(models.Model):
     notes = models.TextField(max_length=200, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        permissions = [
+            ("can_create_record", "Can create record"),
+            ("can_view_records", "Can view records"),
+        ]
