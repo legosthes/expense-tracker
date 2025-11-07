@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 def home(request):
     if request.user.is_authenticated:
         return redirect("accounts:accounts")
-    return redirect("users:register")
+    return redirect("sessions:new")
 
 
 @require_POST
