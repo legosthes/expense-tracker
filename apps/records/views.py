@@ -55,10 +55,13 @@ def sum_record(request, currency):
     currency_value = getattr(Account.Currency, currency)
     print(currency_value)
     accounts = Account.objects.filter(currency=currency_value)
+    print(accounts)
+    records = []
     for account in accounts:
-        records = Record.objects.filter(user=request.user, account=account).order_by(
+        record = Record.objects.filter(user=request.user, account=account).order_by(
             "-created_at"
         )
+        records.append(record)
     return render(
         request,
         "pages/records.html",
