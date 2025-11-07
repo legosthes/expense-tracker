@@ -6,6 +6,12 @@ from django.contrib.auth.models import User
 
 
 # Create your views here.
+def home(request):
+    if request.user.is_authenticated:
+        return redirect("accounts:accounts")
+    return redirect("users:register")
+
+
 @require_POST
 def create(request):
     form = AuthenticationForm(request, data=request.POST)
