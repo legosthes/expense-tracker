@@ -48,3 +48,6 @@ class Account(models.Model):
         cal_amount = self.init_amount - self.total_expense + self.total_income
         self.cur_amount = cal_amount
         self.save()
+
+    class Model:
+        indexes = [models.Index(fields=["user", "created_at"])]
