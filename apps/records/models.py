@@ -43,6 +43,7 @@ class Record(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=["user", "created_at"]),
+            models.Index(fields=["user", "category", "created_at"]),
             models.Index(fields=["user", "account", "category", "created_at"]),
             models.Index(fields=["user", "account", "created_at"]),
         ]
