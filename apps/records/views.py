@@ -53,7 +53,6 @@ def account_category_record(request, account_id, category):
 def sum_record(request, currency):
     categories = Record.ExpenseCategory
     currency_value = getattr(Account.Currency, currency)
-    print(currency_value)
     accounts = Account.objects.filter(currency=currency_value)
     records = Record.objects.filter(user=request.user, account__in=accounts).order_by(
         "-created_at"
