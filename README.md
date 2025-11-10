@@ -1,4 +1,4 @@
-# Budget Tracker 💰
+# Simple Expense Tracker 💰
 
 A personal expense tracking web application built with Django. Track your income and expenses across multiple accounts with different currencies.
 
