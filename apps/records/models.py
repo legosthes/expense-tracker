@@ -46,7 +46,3 @@ class Record(models.Model):
             models.Index(fields=["user", "account", "category", "created_at"]),
             models.Index(fields=["user", "account", "created_at"]),
         ]
-        permissions = [
-            ("can_create_record", "Can create record"),
-            ("can_view_records", "Can view records"),
-        ]
