@@ -7,48 +7,14 @@ from apps.records.forms import RecordForm
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.urls import reverse
-from django.db.models import Sum, Case, When, DecimalField
+from django.db.models import Sum
 
 
 # Create your views here.
 @login_required
 def accounts(request):
     categories = Record.ExpenseCategory
-    accounts = (
-        Account.objects.filter(user_id=request.user)
-        .annotate(
-            # calculating the total_expenses within the query
-            total_expenses=Sum(
-                Case(
-                    When(records__type="Expense", then="records__amount"),
-                    # non-matching will become 0
-                    default=0,
-                    output_field=DecimalField(max_digits=20, decimal_places=2),
-                )
-            ),
-            # calculating the total_incomes within the query
-            total_incomes=Sum(
-                Case(
-                    (When(records__type="Income", then="records__amount")),
-                    default=0,
-                    output_field=DecimalField(max_digits=20, decimal_places=2),
-                )
-            ),
-        )
-        .order_by("created_at")
-    )
-
-    # calculating the cur_amount without using the function in the model because it'll query too many times
-    for account in accounts:
-        account.cur_amount = (
-            account.init_amount
-            # if value is None, use 0
-            + (account.total_incomes or 0)
-            - (account.total_expenses or 0)
-        )
-
-    # update all the accounts at once
-    Account.objects.bulk_update(accounts, ["cur_amount"])
+    accounts = Account.objects.filter(user_id=request.user).order_by("created_at")
 
     records = Record.objects.filter(user_id=request.user).order_by("-created_at")
     total_sums = (
