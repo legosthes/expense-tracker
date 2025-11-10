@@ -49,5 +49,5 @@ class Account(models.Model):
         self.cur_amount = cal_amount
         self.save()
 
-    class Model:
+    class Meta:
         indexes = [models.Index(fields=["user", "created_at"])]
