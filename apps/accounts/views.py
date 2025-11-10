@@ -16,7 +16,7 @@ def accounts(request):
     categories = Record.ExpenseCategory
     accounts = Account.objects.filter(user_id=request.user).order_by("created_at")
 
-    records = Record.objects.filter(user_id=request.user).order_by("-created_at")
+    records = Record.objects.filter(user_id=request.user).order_by("-updated_at")
     total_sums = (
         accounts.values("currency").annotate(sum=Sum("cur_amount")).order_by("-sum")
     )
