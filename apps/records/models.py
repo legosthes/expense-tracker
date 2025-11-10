@@ -27,7 +27,9 @@ class Record(models.Model):
         Others = "Others", "Others"
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    account = models.ForeignKey(
+        Account, related_name="records", on_delete=models.CASCADE
+    )
     amount = models.DecimalField(
         max_digits=20,
         decimal_places=2,
