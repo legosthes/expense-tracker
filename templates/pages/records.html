@@ -38,7 +38,7 @@
         <tbody>
             {%for record in records%}
                 <tr class="hover:bg-primary hover:text-white transition-all duration-200 group">
-                    <th>{{record.created_at}}</th>
+                    <th>{{record.updated_at}}</th>
                     {%if record.type == "Expense"%}
                     <td class="text-error font-bold"> - {{record.account.currency}} {{record.amount}}</td>
                     {%elif record.type == "Income"%}

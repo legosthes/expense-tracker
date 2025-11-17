@@ -75,6 +75,7 @@ def new_record(request):
 def edit_record(request, record_id):
     record = Record.objects.get(pk=record_id)
     form = RecordForm(instance=record, user=request.user)
+    form.fields.pop("account")
     return render(request, "pages/edit_record.html", {"form": form, "record": record})
 
 
@@ -83,8 +84,14 @@ def edit_record(request, record_id):
 def update_record(request, record_id):
     record = Record.objects.get(pk=record_id)
     form = RecordForm(request.POST, instance=record, user=request.user)
-    form.save()
-    return redirect("accounts:accounts")
+    form.fields.pop("account")
+    if form.is_valid:
+        form.save()
+        return redirect("accounts:accounts")
+    else:
+        return render(
+            request, "pages/edit_record.html", {"form": form, "record": record}
+        )
 
 
 @login_required
