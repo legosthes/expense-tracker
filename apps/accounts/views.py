@@ -7,7 +7,7 @@ from apps.records.forms import RecordForm
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.urls import reverse
-from django.db.models import Sum
+from django.db.models import Sum, Case, When, DecimalField
 
 
 # Create your views here.
