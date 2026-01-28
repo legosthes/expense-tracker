@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "apps.records",
     "apps.users",
     "apps.sessions.apps.SessionsConfig",
+    "apps.ai",
 ]
 
 LOGIN_URL = "/sessions/login"
