@@ -35,6 +35,7 @@ def accounts(request):
             account = form.save(commit=False)
             account.user = request.user
             account.save()
+            Account.cal_cur_amount(account)
             return redirect("accounts:accounts")
         if request.POST["_method"] == "record":
             form = RecordForm(request.POST, user=request.user)
