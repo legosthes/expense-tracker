@@ -8,6 +8,7 @@ from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 from django.urls import reverse
 from django.db.models import Sum, Case, When, DecimalField
+from apps.ai.langchain import analyze_records
 
 
 # Create your views here.
@@ -44,6 +45,19 @@ def accounts(request):
                 record.user = request.user
                 record.save()
                 return redirect("accounts:accounts")
+        if request.POST["_method"] == "analyze":
+            analysis = analyze_records(request.user)
+            return render(
+                request,
+                "pages/accounts.html",
+                {
+                    "accounts": accounts,
+                    "sums": sum_items,
+                    "records": records,
+                    "categories": categories,
+                    "analysis": analysis,
+                },
+            )
     else:
         return render(
             request,
