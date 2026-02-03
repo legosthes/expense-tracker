@@ -49,7 +49,6 @@ def accounts(request):
             analysis = analyze_records(
                 list(records.values("amount", "type", "category"))
             )
-            print(analysis)
             return render(
                 request,
                 "pages/accounts.html",
