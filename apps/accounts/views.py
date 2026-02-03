@@ -46,7 +46,10 @@ def accounts(request):
                 record.save()
                 return redirect("accounts:accounts")
         if request.POST["_method"] == "analyze":
-            analysis = analyze_records(request.user)
+            analysis = analyze_records(
+                list(records.values("amount", "type", "category"))
+            )
+            print(analysis)
             return render(
                 request,
                 "pages/accounts.html",
