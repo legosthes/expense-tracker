@@ -52,7 +52,8 @@
     <button class="btn btn-primary mt-3 rounded-3xl px-4 h-10 cursor-pointer transition-all duration-300 ease-in-out">Generate</button>
 </form>
 
-<p class="text-2xl text-primary">{{analysis}}</p>
+{% comment %} Purpose is to convert the output, if the LLM were to generate malicious HTML or JavaScript. {% endcomment %}
+<p class="text-2xl text-primary">{{analysis | escape}}</p>
 
 
 
