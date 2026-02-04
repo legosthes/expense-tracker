@@ -14,15 +14,20 @@ def analyze_records(records, days=30):
     examples = [
         {
             "records": "{{'amount': Decimal('12.34'), 'type': 'Expense', 'category': 'Restaurants'}}, {{'amount': Decimal('56.00'), 'type': 'Expense', 'category': 'Life & Entertainment'}}, {{'amount': Decimal('100.00'), 'type': 'Expense', 'category': 'Shopping'}}",
-            "analysis": "You've spent 12.34 in total on Restaurants, 56.00 in total on Life & Entertainment, 100.00 on Shopping.",
+            "analysis": """You've spent:
+            12.34 in total on Restaurants
+            56.00 in total on Life & Entertainment
+            100.00 on Shopping.""",
         },
         {
             "records": "{{'amount': Decimal('1.00'), 'type': 'Expense', 'category': 'Transportation'}}, {{'amount': Decimal('23.00'), 'type': 'Expense', 'category': 'Restaurants'}}, {{'amount': Decimal('12.00'), 'type': 'Expense', 'category': 'Restaurants'}}",
-            "analysis": "You've spent 1.00 in total on Transportation, 35.00 in total on Restaurants.",
+            "analysis": """You've spent:
+            1.00 in total on Transportation
+            35.00 in total on Restaurants.""",
         },
         {
             "records": "{{'amount': Decimal('5000.00'), 'type': 'Income', 'category': 'Income'}}, {{'amount': Decimal('100000.00'), 'type': 'Income', 'category': 'Income'}}, {{'amount': Decimal('12.00'), 'type': 'Expense', 'category': 'Shopping'}}",
-            "analysis": "You've had a total income of 105000.00 and you've spent 12.00 in total on Shopping.",
+            "analysis": "You've had a total income of 105,000.00 and you've spent 12.00 in total on Shopping.",
         },
     ]
 
@@ -30,13 +35,20 @@ def analyze_records(records, days=30):
         "Records: {records}\n Analysis: {analysis}"
     )
 
-    prefix = "You are a personal finance expert. Please provide an analysis based on the expenses and income that were recorded within {days} days. And at the end, in one sentence, suggest what the user can do to improve their finances."
+    prefix = "You are a personal finance expert. Please provide an analysis based on the expenses and income that were recorded within {days} days."
+
+    suffix = """Records: {records}
+
+    Please format your response with clear sections:
+    - Title: {days}-day Analysis
+    - List expenses by category and bullet points
+    - Provide a recommendation in one sentence at the end"""
 
     prompt_template = FewShotPromptTemplate(
         examples=examples,
         example_prompt=example_prompt,
         prefix=prefix,
-        suffix="Records: {records}",
+        suffix=suffix,
         input_variables=["records"],
     )
 
