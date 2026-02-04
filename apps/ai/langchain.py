@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama.llms import OllamaLLM
 from langchain_core.prompts import (
     PromptTemplate,
     FewShotPromptTemplate,
@@ -40,9 +40,7 @@ def analyze_records(records, days=30):
         input_variables=["records"],
     )
 
-    llm = ChatGoogleGenerativeAI(
-        model="gemini-2.5-pro", api_key=os.getenv("GOOGLE_API_KEY")
-    )
+    llm = OllamaLLM(model="gemma3:4b")
 
     records_str = ", ".join(str(record) for record in records)
 
