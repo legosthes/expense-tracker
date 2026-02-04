@@ -9,6 +9,9 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.db.models import Sum, Case, When, DecimalField
 from apps.ai.langchain import analyze_records
+from datetime import timedelta
+from datetime import datetime
+from django.db.models import F
 
 
 # Create your views here.
@@ -47,7 +50,12 @@ def accounts(request):
                 return redirect("accounts:accounts")
         if request.POST["_method"] == "analyze":
             analysis = analyze_records(
-                list(records.values("amount", "type", "category"))
+                list(
+                    records.filter(
+                        updated_at__gt=datetime.now() - timedelta(days=30)
+                    ).values("amount", "type", "category")
+                ),
+                days=30,
             )
             return render(
                 request,

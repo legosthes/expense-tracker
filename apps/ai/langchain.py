@@ -10,7 +10,7 @@ from langchain_core.output_parsers import StrOutputParser
 load_dotenv()
 
 
-def analyze_records(records):
+def analyze_records(records, days=30):
     examples = [
         {
             "records": "{{'amount': Decimal('12.34'), 'type': 'Expense', 'category': 'Restaurants'}}, {{'amount': Decimal('56.00'), 'type': 'Expense', 'category': 'Life & Entertainment'}}, {{'amount': Decimal('100.00'), 'type': 'Expense', 'category': 'Shopping'}}",
@@ -30,7 +30,7 @@ def analyze_records(records):
         "Records: {records}\n Analysis: {analysis}"
     )
 
-    prefix = "You are a personal finance expert. Please provide an analysis based on the expenses and income provided. And at the end, in one sentence, suggest what the user can do to improve their finances."
+    prefix = "You are a personal finance expert. Please provide an analysis based on the expenses and income that were recorded within {days} days. And at the end, in one sentence, suggest what the user can do to improve their finances."
 
     prompt_template = FewShotPromptTemplate(
         examples=examples,
@@ -47,6 +47,6 @@ def analyze_records(records):
     records_str = ", ".join(str(record) for record in records)
 
     llm_chain = prompt_template | llm | StrOutputParser()
-    ai_msg = llm_chain.invoke({"records": records_str})
+    ai_msg = llm_chain.invoke({"records": records_str, "days": days})
 
     return ai_msg
