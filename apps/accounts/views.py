@@ -53,7 +53,7 @@ def accounts(request):
                 list(
                     records.filter(
                         updated_at__gt=datetime.now() - timedelta(days=30)
-                    ).values("amount", "type", "category")
+                    ).values("amount", "type", "category", "notes")
                 ),
                 days=30,
             )

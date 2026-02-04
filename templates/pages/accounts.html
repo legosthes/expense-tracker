@@ -53,7 +53,10 @@
 </form>
 
 {% comment %} Purpose is to convert the output, if the LLM were to generate malicious HTML or JavaScript. {% endcomment %}
-<p class="text-2xl text-primary">{{analysis | escape}}</p>
+<div class="border-1 border-primary mt-3 rounded-2xl">
+    <p class="text-2xl text-primary p-3 ">{{analysis | escape}}</p>
+</div>
+
 
 
 

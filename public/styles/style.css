@@ -2007,6 +2007,9 @@
   .border-accent {
     border-color: var(--color-accent);
   }
+  .border-primary {
+    border-color: var(--color-primary);
+  }
   .border-red-400 {
     border-color: var(--color-red-400);
   }
