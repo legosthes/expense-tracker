@@ -11,7 +11,6 @@ from django.db.models import Sum, Case, When, DecimalField
 from apps.ai.langchain import analyze_records
 from datetime import timedelta
 from datetime import datetime
-from django.db.models import F
 
 
 # Create your views here.
