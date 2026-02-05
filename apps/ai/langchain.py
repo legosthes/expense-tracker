@@ -7,6 +7,7 @@ from langchain_core.prompts import (
 )
 from langchain_core.output_parsers import StrOutputParser
 
+
 load_dotenv()
 
 
@@ -49,7 +50,7 @@ def analyze_records(records, days=30):
         example_prompt=example_prompt,
         prefix=prefix,
         suffix=suffix,
-        input_variables=["records"],
+        input_variables=["records", "days"],
     )
 
     llm = ChatGoogleGenerativeAI(
